@@ -1,0 +1,118 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #202135;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0em;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  
+  padding: 2em;
+  width: 100px;
+  height: 100px;
+  margin: 0.5em;
+  font-weight: bold;
+  background-color: #FFFFFF;
+  border-radius: 0.5em;
+  box-shadow: 0 0 0.5em #000000aa;
+  color:#7321DB;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.card span {
+  font-size: 5em;
+  font-weight: bold;
+}
+
+.card:hover {
+  background-color: #ffffff;
+   
+  scale: 1.05;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  background: #3637525d;
+}
+
+.bg {
+  background: #363752;
+  border-radius: 0.5em;
+  color: white;
+}
+ .info {
+  display: flex;
+  margin: 4px;
+  padding: 0;
+  
+}
+.text-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  justify-items: start;
+}
+
+.icon{
+  padding: 1em;
+}
+
+ .X-card{
+  color: #7321DB;
+  animation: fadeIn 1s;
+ }
+ .O-card{
+  color: #FFAE12;
+  animation: fadeIn 1s;
+ }
+ 
+ @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.borad {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0em;
+  max-width: 100%;
+  width: 600px;
+  
+  
+}
