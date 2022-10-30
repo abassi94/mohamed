@@ -31,7 +31,7 @@ function App() {
         <div className="icon">5</div>
         <div className="text-box">
           <span> Status {game.winner!=0 ? "Finished" : "Playing"} </span>
-          <span> current player: {game.turn}</span>
+          <span> Current Player: {game.turn}</span>
           <span>{ checkGameOver(game) &&  getWinner(game)}</span>
         </div>
       </div>
@@ -95,3 +95,9 @@ const Card = ({  player, nextTurn }: Props) => {
     </a>
   );
 };
+
+
+
+
+
+
