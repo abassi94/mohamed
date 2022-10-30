@@ -1,25 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
+import confetti from "canvas-confetti";
 import "./App.css";
-import { checkDraw, checkGameOver, getWinner, initialGame, makeMove } from "./lib/Game";
+import {
+  checkDraw,
+  checkGameOver,
+  getWinner,
+  initialGame,
+  makeMove,
+} from "./lib/Game";
 
 function App() {
-
-
   const [count, setCount] = useState(0);
   const [player, setPlayer] = useState(0);
-    ;
-  const [game, setGame] = useState(initialGame)
+  const [game, setGame] = useState(initialGame);
   const [isFinished, setIsFinished] = useState(false);
 
-
-
-
-  function nextTurn(  postion : number) {
-   if (game.winner == 0) {
-     setGame (makeMove(game, postion)); 
-   }
-   
+  function nextTurn(postion: number) {
+    if (game.winner == 0) {
+      setGame(makeMove(game, postion));
+    }
   }
 
   return (
@@ -30,20 +30,26 @@ function App() {
       <div className="info bg">
         <div className="icon">5</div>
         <div className="text-box">
-          <span> Status {game.winner!=0 ? "Finished" : "Playing"} </span>
+          <span> Status {game.winner != 0 ? "Finished" : "Playing"} </span>
           <span> Current Player: {game.turn}</span>
-          <span>{ checkGameOver(game) &&  getWinner(game)}</span>
+          <span>{checkGameOver(game) && getWinner(game)}</span>
         </div>
       </div>
-   <div className="borad">
-      {
-
-        game.board.map((row, index) => {
-
-          return (<Card key={index} value={row} player={game.turn} nextTurn={()=>{nextTurn(index)}} />)
-        }
-        )}
-        </div>
+      <div className="borad">
+       { checkGameOver(game) && <Celarabtion Winner="X"></Celarabtion>}
+        {game.board.map((row, index) => {
+          return (
+            <Card
+              key={index}
+              value={row}
+              player={game.turn}
+              nextTurn={() => {
+                nextTurn(index);
+              }}
+            />
+          );
+        })}
+      </div>
 
       {/* <div className="game">
         <div className="game-board">
@@ -76,8 +82,9 @@ type Props = {
   nextTurn?: any;
 };
 
-const Card = ({  player, nextTurn }: Props) => {
+const Card = ({ player, nextTurn }: Props) => {
   const [value, setValue] = useState("");
+
 
   return (
     <a
@@ -89,15 +96,72 @@ const Card = ({  player, nextTurn }: Props) => {
         nextTurn();
       }}
       className={"card " + value + "-card"}
-      
     >
-      <span  >{value}</span>{" "}
+      <span>{value}</span>{" "}
     </a>
   );
 };
 
+import React from "react";
+
+type WinerProps = {
+  Winner: string;
+};
+
+export function Celarabtion({ Winner }: WinerProps) {
 
 
+useEffect(() => {
+  animate(Winner);
+
+   
+}, [Winner])
 
 
+  async function  animate(team : string) {
+    console.debug('update', team)
 
+    const random = (min : number, max : number) => {
+        min = Math.ceil(min)
+        max = Math.floor(max)
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+    const color = team == 'X' ? 'red' : 'blue'
+
+    const shoot = (angle : number, scalar : number) => {
+        confetti({
+            particleCount: random(5, 10),
+            angle: random(angle - 5, angle + 5),
+            spread: random(35, 55),
+            startVelocity: random(35, 55),
+            colors: ['#FFFFFF', color, color],
+            scalar,
+        })
+    }
+
+    for (let index = 0; index < 9; index++) {
+        setTimeout(shoot, random(0, 200), index * 22.5, random(28, 32) / 10)
+
+        setTimeout(
+            shoot,
+            random(100, 300),
+            index * 22.5,
+            random(18, 22) / 10,
+        )
+    }
+
+  
+ 
+ 
+
+    
+}
+
+  return (
+    <div>
+       
+      
+     
+    </div>
+  );
+}
