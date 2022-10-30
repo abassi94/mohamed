@@ -35,11 +35,12 @@ function App() {
           <span>{checkGameOver(game) && getWinner(game)}</span>
         </div>
       </div>
-      <div className="borad">
-       { checkGameOver(game) && <Celarabtion Winner="X"></Celarabtion>}
+      <div className="borad"  >
+       { checkGameOver(game) && <Celarabtion Winner={getWinner(game)}></Celarabtion>}
         {game.board.map((row, index) => {
           return (
             <Card
+             
               key={index}
               value={row}
               player={game.turn}
@@ -87,15 +88,16 @@ const Card = ({ player, nextTurn }: Props) => {
 
 
   return (
-    <a
+    <a 
+      
       onClick={() => {
         if (value == "") {
           setValue(player == 0 ? "X" : "O");
         }
-
         nextTurn();
       }}
-      className={"card " + value + "-card"}
+      className={"card " + value + "-card  "}
+       
     >
       <span>{value}</span>{" "}
     </a>
@@ -113,20 +115,18 @@ export function Celarabtion({ Winner }: WinerProps) {
 
 useEffect(() => {
   animate(Winner);
-
-   
 }, [Winner])
 
 
   async function  animate(team : string) {
-    console.debug('update', team)
+   
 
     const random = (min : number, max : number) => {
         min = Math.ceil(min)
         max = Math.floor(max)
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
-    const color = team == 'X' ? 'red' : 'blue'
+    const color = team == 'X' ? '7321DB' : 'FFAE12'
 
     const shoot = (angle : number, scalar : number) => {
         confetti({
@@ -158,8 +158,9 @@ useEffect(() => {
 }
 
   return (
-    <div>
+    <div className="marque">
        
+      <h4>Winer is {Winner}</h4>
       
      
     </div>
